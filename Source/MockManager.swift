@@ -54,8 +54,17 @@ public class MockManager {
         } else if let original = original {
             return try original(parameters)
         } else {
+            let defaultReturnValue: OUT = defaultValue()
+            return defaultReturnValue
         //    failAndCrash("No stub for method `\(method)` using parameters \(parameters) and no original implementation was provided.")
         }
+    }
+            
+    public func defaultValue<T>() -> T {
+        let ptr = UnsafeMutablePointer<T>.allocate(capacity: 1)
+        let retval = ptr.pointee
+        ptr.deallocate(capacity: 1)
+        return retval;
     }
     
     public func createStub<IN, OUT>(_ method: String, parameterMatchers: [ParameterMatcher<IN>]) -> ConcreteStub<IN, OUT> {
