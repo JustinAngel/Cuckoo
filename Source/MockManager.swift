@@ -54,7 +54,7 @@ public class MockManager {
         } else if let original = original {
             return try original(parameters)
         } else {
-            failAndCrash("No stub for method `\(method)` using parameters \(parameters) and no original implementation was provided.")
+        //    failAndCrash("No stub for method `\(method)` using parameters \(parameters) and no original implementation was provided.")
         }
     }
     
